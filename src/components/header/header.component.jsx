@@ -3,6 +3,9 @@ import {ReactComponent as Logo} from '../../assets/crown.svg';
 import {Link} from 'react-router-dom';
 import './header.styles.scss';
 import {auth} from '../../firebase/firebase.util';
+import {connect} from 'react-redux';
+/* connect is a higher order component that lets us modify our component to have access 
+things related to redux*/
 
 const HeaderComponent = ({currentUser}) => (
     <div className="header">
@@ -23,4 +26,8 @@ const HeaderComponent = ({currentUser}) => (
     </div>
 )
 
-export default HeaderComponent;
+const mapStateToProps = state =>({
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(HeaderComponent);
